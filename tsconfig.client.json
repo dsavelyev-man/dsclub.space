@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "module": "ES6",
+    "target": "ES5",
+    "moduleResolution": "node",
+    "lib": ["DOM", "ES2016"],
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["client"],
+  "exclude": ["src"]
+}
