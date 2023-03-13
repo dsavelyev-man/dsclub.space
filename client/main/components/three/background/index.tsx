@@ -1,7 +1,23 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import Spiral from "./Spiral";
-import { OrbitControls, Stage } from "@react-three/drei";
+import {
+  OrbitControls,
+  Stage,
+  AdaptiveDpr,
+  AdaptiveEvents,
+  useProgress,
+  Html,
+} from "@react-three/drei";
+
+const CustomLoader = () => {
+  const { progress } = useProgress();
+  return (
+    <Html>
+      <span color="#FFF">{progress} loading</span>
+    </Html>
+  );
+};
 
 const Background = () => {
   return (
@@ -13,8 +29,12 @@ const Background = () => {
     >
       <ambientLight />
       <pointLight intensity={1.8} position={[-10, 0, 8]} />
-      <Spiral position={[1.5, -4, 1]} />
-      <OrbitControls />
+      <AdaptiveDpr pixelated />
+      <AdaptiveEvents />
+      <React.Suspense fallback={<CustomLoader />}>
+        <Spiral />
+      </React.Suspense>
+      {/*<OrbitControls regress />*/}
     </Canvas>
   );
 };
